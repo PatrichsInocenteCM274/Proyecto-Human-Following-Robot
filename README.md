@@ -1,5 +1,5 @@
 
-# ✨ Proyecto Human Following Robot en Webots 🏃‍♀️🎥🤖 ✨
+# ✨ Human Following Robot en Webots 🏃‍♀️🎥🤖 ✨
 
 ```diff
 
