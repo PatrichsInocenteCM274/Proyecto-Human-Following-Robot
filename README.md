@@ -12,4 +12,6 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en Webots (S
 ### <ins>Analisis de Entorno</ins>
 En este proyecto se modelo un Entorno parcialmente observable por el agente robótico móvil, donde en cada instante de tiempo, el agente registrará los datos de observación de 64 mediciones de puntos del LIDAR, los datos de los sensores de orientación, rotación y velocidad, es importante mencionar que la orientacion de cámara actual es enviada también como observación. La orientación de la cámara dependerá de la dirección en la que la persona objetivo es detectada por el modelo YOLO. A continuación se muestra un gráfico explicativo del entorno:
 
-![analisis_entorno](https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/5feaa831-8b04-47f4-a1db-59e19560259b)
+![boceto](https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/0412d654-5be3-418e-889a-eb661d192b56)
+
+
