@@ -18,3 +18,17 @@ En este proyecto se modelo un Entorno parcialmente observable por el agente rob�
 Desde el inicio, pensé en una configuración diferencial para mi robot, por la simplicidad de su locomoción, ya que solo depende de dos actuadores o motores por lo que ayuda a reducir la complejidad de acciones al momento de la busqueda de la política optima en nuestro modelo DDPG, principalmente en Webots existen algunas opciones útiles de robots conocidos, uno de los robots que más llamo mi atención fue el robot Thiago Base de la empresa Pal Robotics que posee una configuración diferencial por ello partiendo de su modelo, elimine, modifique y añadi partes adicionales para terminar implementando mi robot personalizado, por ejemplo, mejores ruedas locas base, un torso con un sensor lidar centrado y una base giratoria como cabeza del robot, la cual ayuda a mover la cámara desde un angulo entre 0 a 360 grados, A contiación el resultado de esta construcción se muestra:
 
 ![robot_demo](https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/84b51296-d825-4abf-9f69-5eb95130d499)
+
+
+## Instrucciones de Uso:
+Instale las siguientes librerias usando pip:
+~~~
+pip install numpy
+pip install deepbots
+pip install matplotlib
+pip install opencv-python
+pip install imageai
+pip install torch
+~~~
+
+
