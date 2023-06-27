@@ -29,6 +29,7 @@ pip install matplotlib
 pip install opencv-python
 pip install imageai
 pip install torch
+sudo apt-get install python3-tk
 ~~~
 
 
