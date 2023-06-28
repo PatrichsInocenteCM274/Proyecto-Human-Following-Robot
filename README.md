@@ -21,7 +21,7 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en Webots (S
   </tr>
  </table>
 
- <div id="features"></div>
+ <div id="robot"></div>
 <table>
   <tr>
     <td><h2> El Robot </h2> </td>
@@ -32,16 +32,28 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en Webots (S
   </tr>
  </table>
 
+# Herramientas
+<div id="features"></div>
+<table>
+  <tr>
+    <td><h2> Herramientas Utilizadas </h2> </td>
+  </tr>
+  <tr>
+    <td><img src="data_images/herramientas.png" >
+    <h4> Este proyecto no serìa posible sin las maravillosas herramientas proporcionadas por Webots, imageai, deepbots, pytorch y openCV.</h4> </td>
+  </tr>
+ </table>
 
 ## Instrucciones de Uso:
 Instale las siguientes librerias usando pip:
 ~~~
-pip install numpy
-pip install deepbots
-pip install matplotlib
-pip install opencv-python
-pip install imageai
-pip install torch
+pip install cython pillow>=7.0.0 numpy>=1.18.1 opencv-python>=4.1.2 torch>=1.9.0 --extra-index-url https://download.pytorch.org/whl/cu102 torchvision>=0.10.0 --extra-index-url https://download.pytorch.org/whl/cu102 pytest==7.1.3 tqdm==4.64.1 scipy>=1.7.3 matplotlib>=3.4.3 mock==4.0.3
+~~~
+~~~
+pip install deepbots imageai
+~~~
+Finalmente usted deberia instalar Tkinter
+~~~
 sudo apt-get install python3-tk
 ~~~
 
