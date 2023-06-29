@@ -44,17 +44,37 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en Webots (S
   </tr>
  </table>
 
-## Instrucciones de Uso:
-Instale las siguientes librerias usando pip:
+## Instrucciones de Uso (Probado en Ubuntu):
+### 1. Instalación 
+Instale las siguientes librerias ingresando los siguientes comandos en su Terminal.
 ~~~
 pip install cython pillow>=7.0.0 numpy>=1.18.1 opencv-python>=4.1.2 torch>=1.9.0 --extra-index-url https://download.pytorch.org/whl/cu102 torchvision>=0.10.0 --extra-index-url https://download.pytorch.org/whl/cu102 pytest==7.1.3 tqdm==4.64.1 scipy>=1.7.3 matplotlib>=3.4.3 mock==4.0.3
 ~~~
 ~~~
 pip install deepbots imageai
 ~~~
-Finalmente usted deberia instalar Tkinter
 ~~~
 sudo apt-get install python3-tk
 ~~~
+Instale Webots, para ello dirijase a la pagina https://cyberbotics.com/doc/guide/installing-webots.
+
+### 2. Ejecutando Simulación
+1. Clone este proyecto en su computadora.
+
+2. Abra Webots y navegue a la opción File >> Open World...
+
+3. Dentro del navegador de archivos dirijase a la ubicaciòn donde clonó el proyecto y acceda a la carpeta worlds y seleccione factory.wbt
+Usted deberà ver algo como esto:
+
+![Captura de pantalla de 2023-06-29 16-27-04](https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/809c23a6-5f08-4baa-ab09-a8c79bcd97c4)
+
+4. Usted se encuentra en el camino correcto, si la simulaciòn no se ejecuta automàticamente solo debe seleccionar el boton ▶️ que iniciará la simulación. A continuaciòn el robot empezará a detectar a la persona objetivo y la seguirá, a continuaciòn se muestra una demostración.
+
+
+
+https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/b112fd37-c9b6-48d9-b8eb-7ae49bbae7e8
+
+
+
 
 
