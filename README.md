@@ -44,7 +44,7 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en Webots (S
   </tr>
  </table>
 
-## Instrucciones de Uso (Probado en Ubuntu):
+## Instrucciones de Uso (Probado en Ubuntu 20.04):
 ### 1. Instalación 
 Instale las siguientes librerias ingresando los siguientes comandos en su Terminal.
 ~~~
