@@ -68,9 +68,7 @@ Usted deberá observar lo siguiente:
 
 ![Captura de pantalla de 2023-06-29 16-27-04](https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/809c23a6-5f08-4baa-ab09-a8c79bcd97c4)
 
-4. Usted se encuentra en el camino correcto, si la simulaciòn no se ejecuta automàticamente solo debe seleccionar el boton ▶️ que iniciará la simulación. A continuaciòn el robot empezará a detectar a la persona objetivo y la seguirá, a continuaciòn se muestra una demostración.
-
-
+4. Usted se encuentra en el camino correcto, si la simulaciòn no se ejecuta automàticamente solo debe seleccionar el boton ▶️ que iniciará la simulación. A continuaciòn el robot empezará a detectar a la persona objetivo y la seguirá, cabe notar que la velocidad en simulación es lenta debido al pequeño delay de detección del modelo Yolo, por lo que no se preocupe si la simulación se ejecuta con bajos fps, puede grabar la simulación usando la herramienta de grabación de webots y obtener un resultado como el siguiente:
 
 https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/b112fd37-c9b6-48d9-b8eb-7ae49bbae7e8
 
