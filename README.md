@@ -64,7 +64,7 @@ Instale Webots, para ello dirijase a la pagina https://cyberbotics.com/doc/guide
 2. Abra Webots y navegue a la opción File >> Open World...
 
 3. Dentro del navegador de archivos dirijase a la ubicaciòn donde clonó el proyecto y acceda a la carpeta worlds y seleccione factory.wbt
-Usted deberà ver algo como esto:
+Usted deberá observar lo siguiente:
 
 ![Captura de pantalla de 2023-06-29 16-27-04](https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/809c23a6-5f08-4baa-ab09-a8c79bcd97c4)
 
