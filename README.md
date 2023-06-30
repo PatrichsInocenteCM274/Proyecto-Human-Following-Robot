@@ -40,7 +40,7 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en Webots (S
   </tr>
   <tr>
     <td><img src="data_images/herramientas.png" >
-    <h4> Este proyecto no serìa posible sin las maravillosas herramientas proporcionadas por Webots, imageai, deepbots, pytorch y openCV.</h4> </td>
+    <h4> Este proyecto no sería posible sin las maravillosas herramientas proporcionadas por Webots, imageai, deepbots, pytorch y openCV.</h4> </td>
   </tr>
  </table>
 
