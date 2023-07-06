@@ -65,8 +65,8 @@ Instale Webots, para ello dirijase a la pagina https://cyberbotics.com/doc/guide
 
 3. Dentro del navegador de archivos dirijase a la ubicaciòn donde clonó el proyecto y acceda a la carpeta worlds y seleccione factory.wbt
 Usted deberá observar lo siguiente:
+![Captura de pantalla de 2023-07-05 21-02-23](https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/a8f5edcd-5523-4424-ba16-08625815b4e7)
 
-![Captura de pantalla de 2023-06-29 16-27-04](https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/809c23a6-5f08-4baa-ab09-a8c79bcd97c4)
 
 4. Usted se encuentra en el camino correcto, si la simulaciòn no se ejecuta automàticamente solo debe seleccionar el boton ▶️ que iniciará la simulación. A continuaciòn el robot empezará a detectar a la persona objetivo y la seguirá, cabe notar que la velocidad en simulación es lenta debido al pequeño delay de detección del modelo Yolo, por lo que no se preocupe si la simulación se ejecuta con bajos fps, puede grabar la simulación usando la herramienta de grabación de webots y obtener un resultado como el siguiente:
 
