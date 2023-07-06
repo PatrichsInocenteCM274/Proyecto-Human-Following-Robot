@@ -72,6 +72,18 @@ Usted deberá observar lo siguiente:
 
 https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/b112fd37-c9b6-48d9-b8eb-7ae49bbae7e8
 
+# Resultados de Entrenamiento
+
+<div id="features"></div>
+<table>
+  <tr>
+    <td><h2> Resultados DDPG </h2> </td>
+  </tr>
+  <tr>
+    <td><img src="data_images/training.png" >
+      </td>
+  </tr>
+ </table>
 
 
 
