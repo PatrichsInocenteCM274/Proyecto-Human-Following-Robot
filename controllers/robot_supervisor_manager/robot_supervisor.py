@@ -21,10 +21,17 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
         """
 
         super().__init__()
+        
+        self.lidar = self.getDevice("Hokuyo URG-04LX-UG01")
+        self.lidar_fov = self.lidar.getFov()
+        self.lidar_resolution = self.lidar.getHorizontalResolution()
+        self.lidar_radius = self.lidar.getMaxRange()
+        self.lidar.enable(self.timestep)
+        self.lidar.enablePointCloud()
 
         # Set up gym spaces
-        self.observation_space = Box(low= np.concatenate([np.array([-np.inf, -np.inf, -1.0, -1.0, 0.0]),np.array([0.0]*64)]),
-                                     high= np.concatenate([np.array([np.inf, np.inf, 1.0, 1.0, 6.28]),np.array([np.inf]*64)]),
+        self.observation_space = Box(low= np.concatenate([np.array([-np.inf, -np.inf, -1.0, -1.0, 0.0]),np.array([0.0]*self.lidar_resolution)]),
+                                     high= np.concatenate([np.array([np.inf, np.inf, 1.0, 1.0, 6.28]),np.array([np.inf]*self.lidar_resolution)]),
                                      dtype=np.float64)
         self.action_space = Box(low=np.array([-1.0 , -1.0]), high=np.array([1.0 , 1.0]), dtype=np.float64)
 
@@ -40,12 +47,13 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
         self.camera.enable(self.timestep)
         self.position_sensor_camera = self.getDevice("camera_angle_sensor")
         self.position_sensor_camera.enable(self.timestep)
-        self.lidar = self.getDevice("Hokuyo URG-04LX-UG01")
-        self.lidar.enable(self.timestep)
-        self.lidar.enablePointCloud()
         self.width = self.camera.getWidth()
         self.height = self.camera.getHeight()
-        self.display = self.getDevice('display')
+        self.display = self.getDevice('display_camera')
+        self.display_lidar = self.getDevice('display_lidar')
+        self.display_lidar_height = self.display_lidar.getHeight()
+        self.display_lidar_width = self.display_lidar.getWidth()
+        
         self.box_detect = None
         self.steps = 0
         if self.YOLO:
@@ -80,7 +88,7 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
                 max_percentage = Object["percentage_probability"]
         #print("percentage max: ",max_percentage)
         
-        self.display.setColor(0xFF0000)
+        self.display.setColor(0xFFFFFF)
         self.display.setOpacity(0.3)
         ir = self.display.imageNew(frame, Display.BGRA, self.width, self.height)
         self.display.imagePaste(ir, 0, 0, False)
@@ -98,11 +106,39 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
         image = image[:, :, :3]
         cv2.imwrite("images/Person"+ str(self.steps) +".png", image)
         
+    def lidar_show_display(self,range_image):
+        dw = self.display_lidar_width
+        dh = self.display_lidar_height
+        fov = self.lidar_fov
+        dw2 = dw // 2
+        dh2 = dh // 2
+        fov2 = fov / 2
+        px = [dw2, dw2 + int(dw * math.cos(-fov2 - math.pi / 2)), dw2 + int(dw * math.cos(fov2 - math.pi / 2))]
+        py = [dh2, dh2 + int(dh * math.sin(-fov2 - math.pi / 2)), dh2 + int(dh * math.sin(fov2 - math.pi / 2))]
+        self.display_lidar.setColor(0x002642)
+        self.display_lidar.fillRectangle(0,0,dw,dh)
+        self.display_lidar.setColor(0xFFFFFF)
+        self.display_lidar.fillPolygon(px,py)
+        self.display_lidar.drawPolygon(px,py)
+        self.display_lidar.drawLine(dw2, 0, dw2, dh)
+        self.display_lidar.drawLine(0, dh2, dw, dh2)
+        self.display_lidar.drawOval(dw2, dh2, dw2, dh2)
+        self.display_lidar.setColor(0x92CEF7)
+        
+        for i in range(self.lidar_resolution):
+            f = range_image[i]
+            if f != float('inf') and not math.isnan(f):
+                alpha = -fov2 + fov * i/self.lidar_resolution - math.pi/2
+                self.display_lidar.drawLine(dw2, dh2, dw2 + f * math.cos(alpha) * dw2/self.lidar_radius, dh2 + f * math.sin(alpha) * dh2/self.lidar_radius)
+        
     def get_observations(self):
         
-        if self.YOLO:
+        if self.YOLO and self.steps%4 == 0:
             self.yolo_detection()
+        
         #self.saving_images()
+        
+        
         robot_velocity_x = normalize_to_range(self.robot.getVelocity()[0], -6.0, 6.0, -1.0, 1.0, clip=True)
         robot_velocity_y = normalize_to_range(self.robot.getVelocity()[1], -6.0, 6.0, -1.0, 1.0, clip=True)
 
@@ -112,8 +148,9 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
         angle_camera = normalize_to_range(self.sensor_camera_value(), 0.0, 6.28, -1.0, 1.0, clip=True)
           
         range_image = self.lidar.getRangeImage()
-        range_image = np.clip(range_image, 0, 2)
-        range_image = np.interp(range_image, (0, 2), (0, 1))
+        range_image = np.clip(range_image, 0, self.lidar_radius)
+        self.lidar_show_display(range_image)
+        range_image = np.interp(range_image, (0, self.lidar_radius), (0, 1))
         range_image = range_image.tolist()
         
         self.steps = self.steps + 1
@@ -143,7 +180,7 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
             return True
             
         for laser in self.lidar.getRangeImage():
-            if laser < 0.3 and self.train:
+            if laser < 0.45 and self.train:
                 print("Choque con Obstaculo")
                 self.steps = 0
                 return True
@@ -153,7 +190,7 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
     def solved(self):
 
         if len(self.episode_score_list) > 100:  # Over 100 trials thus far
-            if np.mean(self.episode_score_list[-100:]) > 115.0:  # Last 100 episode scores average value
+            if np.mean(self.episode_score_list[-100:]) > 113.0:  # Last 100 episode scores average value
                 return True
         return False
 
@@ -185,7 +222,7 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
         self.setup_obstacles()
         #orientationX_persona = (-self.robot.getPosition()[0] + x)/self.prev_dist_to_goal
         #orientationY_persona = (-self.robot.getPosition()[1] + y)/self.prev_dist_to_goal
-        return np.concatenate([np.array([0.0,0.0,1.0,0.0,0.0]),np.array([1.0]*64)])
+        return np.concatenate([np.array([0.0,0.0,1.0,0.0,0.0]),np.array([1.0]*self.lidar_resolution)])
         
     def change_direction_camera(self):
         # angle_robot -> [0,6.2830]
@@ -207,11 +244,11 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
                     self.motor_camera.setVelocity(0.0)
                 else:
                     self.motor_camera.setPosition(float('inf'))
-                    self.motor_camera.setVelocity(-2.0)
+                    self.motor_camera.setVelocity(-1.0)
                 #print("1")
             else:
                 self.motor_camera.setPosition(float('inf'))
-                self.motor_camera.setVelocity(2.0)
+                self.motor_camera.setVelocity(1.0)
                 #print("2")
                 
         if self.sensor_camera_value() > angle_camera:
@@ -221,11 +258,11 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
                     self.motor_camera.setVelocity(0.0)
                 else:
                     self.motor_camera.setPosition(float('inf'))
-                    self.motor_camera.setVelocity(2.0)
+                    self.motor_camera.setVelocity(1.0)
                 #print("3")
             else:
                 self.motor_camera.setPosition(float('inf'))
-                self.motor_camera.setVelocity(-2.0)
+                self.motor_camera.setVelocity(-1.0)
                 #print("4")
         
         
