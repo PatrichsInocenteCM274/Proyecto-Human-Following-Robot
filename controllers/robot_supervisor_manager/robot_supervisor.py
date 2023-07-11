@@ -37,7 +37,8 @@ class HumanFollowingRobotSupervisor(RobotSupervisorEnv):
 
         # Set up various robot components
         self.robot = self.getSelf()  # Grab the robot reference from the supervisor to access various robot methods
-        self.target = self.getFromDef('target')
+        #self.target = self.getFromDef('target_train')
+        self.target = self.getFromDef('target_human')
         self.np_random, _ = gym.utils.seeding.np_random()
         self.np_random.seed(100)
         self.YOLO = with_yolo
@@ -175,7 +176,7 @@ class HumanFollowingRobotSupervisor(RobotSupervisorEnv):
         
 
     def is_done(self):
-        if self.prev_dist_to_goal < self.dist_to_goal_reached and self.train:
+        if self.prev_dist_to_goal < self.dist_to_goal_reached: #and self.train:
             print("Goal")
             self.steps = 0
             return True
@@ -187,7 +188,7 @@ class HumanFollowingRobotSupervisor(RobotSupervisorEnv):
                 self.steps = 0
                 return True
                 
-        if abs(self.robot.getPosition()[0]) > 4.0 or abs(self.robot.getPosition()[1]) > 4.0:
+        if (abs(self.robot.getPosition()[0]) > 4.0 or abs(self.robot.getPosition()[1]) > 4.0) and self.train:
             print("Arena Limit")
             return True
                 
@@ -225,8 +226,11 @@ class HumanFollowingRobotSupervisor(RobotSupervisorEnv):
         self.prev_dist_to_goal = math.sqrt(((self.robot.getPosition()[0] - x_target) ** 2 +
                                   (self.robot.getPosition()[1] - y_target) ** 2))
         trans_field = self.target.getField("translation")
-        trans_field.setSFVec3f([x_target,y_target,0.06])
-
+        if self.train:
+            trans_field.setSFVec3f([x_target,y_target,0.06])
+        else:
+            trans_field.setSFVec3f([x_target,y_target,1.27])
+            
     def get_default_observation(self):
         # When reset is activated
         self.setup_obstacles()
