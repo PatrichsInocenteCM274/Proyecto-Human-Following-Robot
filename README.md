@@ -84,7 +84,7 @@ https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/3
     <td><h2> Resultados DDPG </h2> </td>
   </tr>
   <tr>
-    <td><img src="data_images/training.png" >
+    <td><img src="data_images/result_ddpg_4000_episodes.png" >
       </td>
   </tr>
  </table>
