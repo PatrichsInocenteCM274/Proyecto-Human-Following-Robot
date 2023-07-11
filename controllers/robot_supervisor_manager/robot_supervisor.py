@@ -11,7 +11,7 @@ from PIL import Image
 
 import sys
 
-class CartPoleRobotSupervisor(RobotSupervisorEnv):
+class HumanFollowingRobotSupervisor(RobotSupervisorEnv):
 
 
     def __init__(self,in_train,with_yolo):
@@ -37,7 +37,7 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
 
         # Set up various robot components
         self.robot = self.getSelf()  # Grab the robot reference from the supervisor to access various robot methods
-        self.target = self.getFromDef('pedestrian')
+        self.target = self.getFromDef('target')
         self.np_random, _ = gym.utils.seeding.np_random()
         self.np_random.seed(100)
         self.YOLO = with_yolo
@@ -53,7 +53,8 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
         self.display_lidar = self.getDevice('display_lidar')
         self.display_lidar_height = self.display_lidar.getHeight()
         self.display_lidar_width = self.display_lidar.getWidth()
-        
+        self.dist_to_goal_reached = 0.65
+        self.dist_to_obstacle_reached = 0.30
         self.box_detect = None
         self.steps = 0
         if self.YOLO:
@@ -80,7 +81,8 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
         frame = self.camera.getImage()
         image = np.frombuffer(frame, np.uint8).reshape((self.camera.getHeight(), self.camera.getWidth(), 4))
         image = image[:, :, :3]    
-        detections = self.detector_yolo.detectObjectsFromImage(input_image=image,output_image_path="detect.png", minimum_percentage_probability=30)
+        #detections = self.detector_yolo.detectObjectsFromImage(input_image=image,output_image_path="detect.png", minimum_percentage_probability=30)
+        detections = self.detector_yolo.detectObjectsFromImage(input_image=image,minimum_percentage_probability=30)
         max_percentage = 0.0
         for Object in detections:    
             if Object["percentage_probability"] > max_percentage:
@@ -129,7 +131,8 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
             f = range_image[i]
             if f != float('inf') and not math.isnan(f):
                 alpha = -fov2 + fov * i/self.lidar_resolution - math.pi/2
-                self.display_lidar.drawLine(dw2, dh2, dw2 + f * math.cos(alpha) * dw2/self.lidar_radius, dh2 + f * math.sin(alpha) * dh2/self.lidar_radius)
+                self.display_lidar.drawLine(dw2, dh2, dw2 + f * math.cos(alpha) * dw2/self.lidar_radius, 
+                                                      dh2 + f * math.sin(alpha) * dh2/self.lidar_radius)
         
     def get_observations(self):
         
@@ -152,7 +155,6 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
         self.lidar_show_display(range_image)
         range_image = np.interp(range_image, (0, self.lidar_radius), (0, 1))
         range_image = range_image.tolist()
-        
         self.steps = self.steps + 1
         
         return [robot_velocity_x, robot_velocity_y, 
@@ -166,62 +168,68 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
         reward = max(self.prev_dist_to_goal - dist_to_goal,0)*10
         if self.prev_dist_to_goal - dist_to_goal < 0:
             reward = -0.001
-        if dist_to_goal < 1.0:
+        if dist_to_goal < self.dist_to_goal_reached:
             reward = 100.0
         self.prev_dist_to_goal = dist_to_goal
         return reward
         
 
     def is_done(self):
-
-        if self.prev_dist_to_goal < 1.0 and self.train:
-            print("Llego a Objetivo")
+        if self.prev_dist_to_goal < self.dist_to_goal_reached and self.train:
+            print("Goal")
             self.steps = 0
             return True
             
+        #the radious of the robot is 0.265    
         for laser in self.lidar.getRangeImage():
-            if laser < 0.45 and self.train:
-                print("Choque con Obstaculo")
+            if laser < self.dist_to_obstacle_reached and self.train:
+                print("Obstacle")
                 self.steps = 0
                 return True
+                
+        if abs(self.robot.getPosition()[0]) > 4.0 or abs(self.robot.getPosition()[1]) > 4.0:
+            print("Arena Limit")
+            return True
                 
         return False
 
     def solved(self):
 
         if len(self.episode_score_list) > 100:  # Over 100 trials thus far
-            if np.mean(self.episode_score_list[-100:]) > 113.0:  # Last 100 episode scores average value
+            if np.mean(self.episode_score_list[-100:]) > 125.0:  # Last 100 episode scores average value
                 return True
         return False
 
-    def aleatory_position(self,radio_min ,radio_max):
-        angle = np.random.uniform(0, 2*np.pi)
+    def aleatory_position(self,radio_min ,radio_max,angle):
         radio = np.random.uniform(radio_min, radio_max)
         x = radio * np.cos(angle)
         y = radio * np.sin(angle)
         return x,y
         
     def setup_obstacles(self):
+        random_angles = [None] * 6
+        # Set place for each obstacle:
         for i in range(3):
             self.obstacles[i] = self.getFromDef('obstacle'+str(i+1))
-            x,y = self.aleatory_position(radio_min = 1.9, radio_max = 1.9)
+            random_angles[i] = np.random.uniform(0, 2*np.pi)
+            x,y = self.aleatory_position(radio_min = 1.9, radio_max = 1.9,angle = random_angles[i])
             trans_field = self.obstacles[i].getField("translation")
-
-            if i+1==5:
-                trans_field.setSFVec3f([x,y,1.27])
-            else: 
-                trans_field.setSFVec3f([x,y,0.40]) 
+            trans_field.setSFVec3f([x,y,0.40])
+            
+        random_angles[3] = np.random.uniform(0, 2*np.pi)
+        random_angles[4] = np.random.uniform(0, 2*np.pi)
+        random_angles[5] = np.random.uniform(0, 2*np.pi)
+        # Set place of target behind random obstacle:
+        x_target,y_target = self.aleatory_position(radio_min = 3.0, radio_max = 3.0,
+                                                    angle = random_angles[np.random.randint(0, 5)])
+        self.prev_dist_to_goal = math.sqrt(((self.robot.getPosition()[0] - x_target) ** 2 +
+                                  (self.robot.getPosition()[1] - y_target) ** 2))
+        trans_field = self.target.getField("translation")
+        trans_field.setSFVec3f([x_target,y_target,0.06])
 
     def get_default_observation(self):
-        # Esto se da cuando se activa el reset
-        x,y = self.aleatory_position(radio_min = 2.5, radio_max = 2.5)
-        self.prev_dist_to_goal = math.sqrt(((self.robot.getPosition()[0] - x) ** 2 +
-                                  (self.robot.getPosition()[1] - y) ** 2))
-        trans_field = self.target.getField("translation")
-        trans_field.setSFVec3f([x,y,1.27])
+        # When reset is activated
         self.setup_obstacles()
-        #orientationX_persona = (-self.robot.getPosition()[0] + x)/self.prev_dist_to_goal
-        #orientationY_persona = (-self.robot.getPosition()[1] + y)/self.prev_dist_to_goal
         return np.concatenate([np.array([0.0,0.0,1.0,0.0,0.0]),np.array([1.0]*self.lidar_resolution)])
         
     def change_direction_camera(self):
@@ -244,11 +252,11 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
                     self.motor_camera.setVelocity(0.0)
                 else:
                     self.motor_camera.setPosition(float('inf'))
-                    self.motor_camera.setVelocity(-1.0)
+                    self.motor_camera.setVelocity(-1.5)
                 #print("1")
             else:
                 self.motor_camera.setPosition(float('inf'))
-                self.motor_camera.setVelocity(1.0)
+                self.motor_camera.setVelocity(1.5)
                 #print("2")
                 
         if self.sensor_camera_value() > angle_camera:
@@ -258,14 +266,12 @@ class CartPoleRobotSupervisor(RobotSupervisorEnv):
                     self.motor_camera.setVelocity(0.0)
                 else:
                     self.motor_camera.setPosition(float('inf'))
-                    self.motor_camera.setVelocity(1.0)
+                    self.motor_camera.setVelocity(1.5)
                 #print("3")
             else:
                 self.motor_camera.setPosition(float('inf'))
-                self.motor_camera.setVelocity(-1.0)
+                self.motor_camera.setVelocity(-1.5)
                 #print("4")
-        
-        
             
     def sensor_camera_value(self):
         if self.position_sensor_camera.getValue()<0:

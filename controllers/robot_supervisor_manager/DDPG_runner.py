@@ -1,5 +1,5 @@
 from numpy import convolve, ones, mean
-from robot_supervisor import CartPoleRobotSupervisor
+from robot_supervisor import HumanFollowingRobotSupervisor
 from DDPG_agent import DDPGAgent
 from utilities import plot_data
 import os
@@ -12,7 +12,7 @@ def run(train_parse,yolo_parse):
     
     in_train = True if train_parse == "yes" else False
     with_yolo = True if yolo_parse == "yes" else False
-    env = CartPoleRobotSupervisor(in_train,with_yolo)
+    env = HumanFollowingRobotSupervisor(in_train,with_yolo)
     # The agent used here is trained with the DDPG algorithm (https://arxiv.org/abs/1509.02971).
     # We pass (4, ) as numberOfInputs and (2, ) as numberOfOutputs, taken from the gym spaces
     agent = DDPGAgent(env.observation_space.shape, env.action_space.shape, lr_actor=0.000025, lr_critic=0.00025,

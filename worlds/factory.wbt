@@ -16,12 +16,13 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/street_furniture/protos/PublicToiletMesh.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/BrushedAluminium.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/appearances/protos/BlanketFabric.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/humans/pedestrian/protos/Pedestrian.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.1832859725922554 -0.41553844503572074 -0.8909175343140388 5.3637527511537915
-  position -5.7712982471689545 -8.208892286921834 5.52568167744707
+  orientation -0.2743283440625896 -0.007690018657517249 0.9616053365372536 3.19550167669314
+  position 9.567811474949762 -1.1756837643978417 7.932484989790977
   follow "robot"
 }
 TexturedBackground {
@@ -865,7 +866,7 @@ Solid {
             dampingConstant 5
           }
           endPoint Solid {
-            translation -4.302453427570748e-10 -6.661338147750939e-16 0
+            translation -4.3024534361088275e-10 -1.2212453270876722e-15 0
             children [
               Solid {
                 translation -0.01 0 0
@@ -1061,7 +1062,7 @@ Solid {
             dampingConstant 5
           }
           endPoint Solid {
-            translation -2.262797758325392e-10 2.4472091020300013e-13 0
+            translation -2.2627977619613667e-10 6.34187147241505e-13 0
             children [
               Solid {
                 translation -0.01 0 0
@@ -4596,7 +4597,7 @@ Solid {
             dampingConstant 5
           }
           endPoint Solid {
-            translation -1.935320138058719e-09 2.1535551120166474e-13 0
+            translation -1.9353201384511052e-09 4.764522110178859e-13 0
             children [
               Solid {
                 translation -0.01 0 0
@@ -4792,7 +4793,7 @@ Solid {
             dampingConstant 5
           }
           endPoint Solid {
-            translation -1.0178298850387486e-09 8.162914788556463e-14 0
+            translation -1.0178298852095972e-09 2.1149748619109232e-13 0
             children [
               Solid {
                 translation -0.01 0 0
@@ -12024,7 +12025,7 @@ DEF ROBOT Robot {
           verticalFieldOfView 0.006289474474474474
           numberOfLayers 1
           minRange 0.2
-          maxRange 2
+          maxRange 3
         }
       ]
     }
@@ -12102,7 +12103,7 @@ DEF ROBOT Robot {
           name "solid(5)"
         }
         DEF columna1 Solid {
-          translation -0.18 -0.15 0.3
+          translation -0.17 -0.16 0.3
           children [
             DEF columna Shape {
               appearance BrushedAluminium {
@@ -12123,14 +12124,14 @@ DEF ROBOT Robot {
           name "columna3"
         }
         Solid {
-          translation 0.17 -0.15 0.3
+          translation 0.17 -0.16 0.3
           children [
             USE columna
           ]
           name "columna2"
         }
         Solid {
-          translation 0.15 0.17 0.3
+          translation 0.17 0.16 0.3
           children [
             USE columna
           ]
@@ -12302,8 +12303,8 @@ DEF ROBOT Robot {
         }
       ]
       endPoint DEF RIGHT_WHEEL Solid {
-        translation -4.7896443201126566e-05 -0.202000019834 -8.787234605510839e-05
-        rotation -0.7692792573747873 -0.4517786611993274 0.45178032876370255 4.453041291152143
+        translation -4.789644320120015e-05 -0.202000019834 -8.787234605524318e-05
+        rotation -0.7692792573747889 -0.4517786611993403 0.451780328763687 4.453041291152222
         children [
           DEF BIG_WHEEL Group {
             children [
@@ -12421,8 +12422,8 @@ DEF ROBOT Robot {
         }
       ]
       endPoint DEF LEFT_WHEEL Solid {
-        translation 1.0740064382990803e-05 0.2020000508871321 8.630120050396212e-05
-        rotation -0.7974826647688318 -0.4266263374098086 0.4266279030038883 4.487997288069101
+        translation 1.0740064382988289e-05 0.2020000508871321 8.63012005039563e-05
+        rotation -0.7974826647688378 -0.4266263374098237 0.42662790300386194 4.487997288069178
         children [
           Pose {
             rotation -1 0 0 3.141593
@@ -12569,7 +12570,7 @@ DEF ROBOT Robot {
       }
       endPoint Solid {
         translation -0.14 0 -0.075
-        rotation -0.028360989319462678 0.5782330056423236 0.8153785902699838 4.753374734860293
+        rotation -0.028360989319450417 0.5782330056423661 0.815378590269954 4.7533747348602935
         children [
           DEF forma_esfera Shape {
             appearance PBRAppearance {
@@ -12594,7 +12595,7 @@ DEF ROBOT Robot {
       }
       endPoint Solid {
         translation 0.14 0 -0.075
-        rotation 0.45672760687927755 0.030348413564393804 0.8890887846039072 4.357082289199959
+        rotation 0.4567276068792824 0.030348413564407817 0.8890887846039041 4.35708228919998
         children [
           USE forma_esfera
         ]
@@ -12716,12 +12717,12 @@ DEF ROBOT Robot {
   controller "robot_supervisor_manager"
   controllerArgs [
     "--train=not"
-    "--yolo=yes"
+    "--yolo=not"
   ]
   supervisor TRUE
 }
 DEF pedestrian Robot {
-  translation -2.45 -1.47 1.27
+  translation -5.5 -3.38 1.27
   children [
     Group {
     }
@@ -13039,4 +13040,101 @@ DEF pedestrian Robot {
   ]
   controller "<none>"
   supervisor TRUE
+}
+DEF humanextra1 Pedestrian {
+  translation -5.62 -6.45 1.27
+  name "pedestrian(1)"
+  shirtColor 0.447059 0.623529 0.811765
+  pantsColor 0.933333 0.933333 0.92549
+}
+DEF humanextra2 Pedestrian {
+  translation -6.66 1.74 1.37
+  name "pedestrian(12)"
+  shirtColor 0.913725 0.72549 0.431373
+}
+DEF humanextra3 Pedestrian {
+  translation -10.98 -1.37 1.37
+  name "pedestrian(9)"
+  shirtColor 0.933333 0.933333 0.92549
+}
+DEF humanextra4 Pedestrian {
+  translation -9.66 -6.72 1.37
+  name "pedestrian(6)"
+  shirtColor 0 0 0
+}
+DEF humanextra5 Pedestrian {
+  translation -4.78146 -7.00146 1.27
+  rotation 0 0 1 2.35619
+  name "pedestrian(2)"
+  shirtColor 0.937255 0.160784 0.160784
+}
+DEF humanextra6 Pedestrian {
+  translation -5.07728 1.04526 1.37
+  rotation 0 0 1 2.35619
+  name "pedestrian(13)"
+  shirtColor 0.678431 0.498039 0.658824
+  pantsColor 0.933333 0.933333 0.92549
+}
+DEF humanextra7 Pedestrian {
+  translation -6.16916 0.830505 1.37
+  rotation 0 0 -1 -1.3089953071795861
+  name "pedestrian(10)"
+  shirtColor 0.643137 0 0
+}
+DEF humanextra8 Pedestrian {
+  translation -9.86438 -1.8185 1.37
+  rotation 0 0 1 2.35619
+  name "pedestrian(7)"
+  shirtColor 0.937255 0.160784 0.160784
+  pantsColor 1 1 1
+}
+DEF humanextra9 Pedestrian {
+  translation -8.7686 -7.35508 1.37
+  rotation 0 0 1 2.35619
+  name "pedestrian(5)"
+  shirtColor 0.702525 0.0471046 0.88333
+  pantsColor 0.827451 0.843137 0.811765
+}
+DEF humanextra10 Pedestrian {
+  translation -4.55 -5.96504 1.27
+  rotation 0 0 1 -2.094395307179586
+  name "pedestrian(3)"
+  shirtColor 0.933333 0.933333 0.92549
+  pantsColor 0.533333 0.541176 0.521569
+}
+DEF humanextra11 Pedestrian {
+  translation -5.30796 1.90887 1.37
+  rotation 0 0 1 -2.094395307179586
+  name "pedestrian(11)"
+  shirtColor 0.333333 0.341176 0.32549
+  pantsColor 0.929412 0.831373 0
+}
+DEF humanextra12 Pedestrian {
+  translation -9.73068 -0.872206 1.37
+  rotation 0 0 1 -2.094395307179586
+  name "pedestrian(8)"
+  shirtColor 0.239216 0.25098 0.501961
+  pantsColor 0.952941 0.952941 0.952941
+}
+DEF humanextra13 Pedestrian {
+  translation -8.754 -6.23992 1.37
+  rotation 0 0 1 -2.094395307179586
+  name "pedestrian(4)"
+  shirtColor 0.560784 0.34902 0.00784314
+  pantsColor 0.447059 0.623529 0.811765
+}
+DEF target Solid {
+  translation -1.23 -2.85 0.06
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.0832227 0.713329 0.279072
+      }
+      geometry Cylinder {
+        height 0.1
+        radius 0.3
+      }
+    }
+  ]
+  name "solid(1)"
 }
