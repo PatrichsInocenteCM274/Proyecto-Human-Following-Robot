@@ -5,7 +5,6 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/apartment_structure/protos/Door.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/GlossyPaint.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/obstacles/protos/OilBarrel.proto"
-EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/factory/containers/protos/CardboardBox.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/factory/containers/protos/WoodenBox.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/apartment_structure/protos/Wall.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Roughcast.proto"
@@ -21,9 +20,10 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.322055008880927 -0.0011487826152589895 -0.9467202604535349 3.148337823161901
-  position 11.795328240011445 -0.7101372661392691 11.733890571965382
+  orientation 0.11927148280010641 -0.8967478679788118 -0.42616613505312656 5.678129205283324
+  position -13.547686397249462 -3.4299351531304656 8.369611468546939
   follow "robot"
+  followType "Mounted Shot"
 }
 TexturedBackground {
   texture "empty_office"
@@ -155,20 +155,67 @@ Door {
   }
 }
 DEF obstacle3 OilBarrel {
-  translation 1.45982 -2.51917 0.44
+  translation -1.72361 2.23501 0.44
   rotation 0 0 1 2.87325
   name "oil barrel(1)"
   radius 0.2
 }
 DEF obstacle2 OilBarrel {
-  translation -2.16959 0.387033 0.44
+  translation -2.29682 -0.075788 0.44
   rotation 0 0 1 2.87325
   name "oil barrel(2)"
+  radius 0.2
+}
+OilBarrel {
+  translation -13.5095 -5.43492 0.44
+  rotation 0 0 1 2.87325
+  name "oil barrel(4)"
+  radius 0.2
+}
+OilBarrel {
+  translation -13.2897 -8.89711 0.44
+  rotation 0 0 1 2.87325
+  name "oil barrel(6)"
   radius 0.2
 }
 DEF obstacle1 OilBarrel {
   translation 2.20507 0.949482 0.44
   rotation 0 0 1 -0.340335
+}
+OilBarrel {
+  translation -2.88578 -2.04288 0.44
+  rotation 0 0 1 -0.340335
+  name "oil barrel(5)"
+}
+OilBarrel {
+  translation -5.67855 -1.87076 0.44
+  rotation 0 0 1 -0.340335
+  name "oil barrel(3)"
+}
+OilBarrel {
+  translation -10.4025 -1.28007 0.44
+  rotation 0 0 1 -0.340335
+  name "oil barrel(11)"
+}
+OilBarrel {
+  translation -14.7357 -6.92721 0.44
+  rotation 0 0 1 -0.340335
+  name "oil barrel(7)"
+}
+OilBarrel {
+  translation -7.88268 -9.35394 0.44
+  rotation 0 0 1 -0.340335
+  name "oil barrel(10)"
+}
+OilBarrel {
+  translation -15.3284 -1.89044 0.44
+  rotation 0 0 1 -0.340335
+  name "oil barrel(9)"
+}
+OilBarrel {
+  translation -17.5763 -9.16748 0.44
+  rotation 0 0 1 -0.340335
+  name "oil barrel(8)"
 }
 Door {
   translation -25.05 0 0.02
@@ -180,13 +227,9 @@ Door {
     baseColor 0.35 0.3503166247043564 0.35
   }
 }
-CardboardBox {
-  translation 2.2324987 -11.807743 0.31
-  rotation 0 0 1 -1.5707963267948966
-}
 WoodenBox {
   translation 0.070787217 -11.12746 0.3
-  rotation -0.935113119114731 0.250562820924732 0.250562820924732 4.645351474266668
+  rotation -1 1.65898e-08 1.65898e-08 -1.5707953071795862
   name "wooden box(1)"
 }
 WoodenBox {
@@ -210,8 +253,8 @@ WoodenBox {
   name "wooden box(5)"
 }
 WoodenBox {
-  translation 0.95220994 -10.946614 0.3
-  rotation -0.677661491465059 0.519987933987584 0.519987933987584 4.332744312017075
+  translation 0.95221 -11.1666 0.3
+  rotation 0.5773502691896258 -0.5773502691896258 -0.5773502691896258 2.0944
   name "wooden box(6)"
 }
 WoodenBox {
@@ -220,9 +263,29 @@ WoodenBox {
   name "wooden box(7)"
 }
 WoodenBox {
-  translation 0.74212598 -12.012516 0.9
+  translation -8.55306 -3.851 0.3
   rotation 1 0 0 1.5707963267948966
   name "wooden box(8)"
+}
+WoodenBox {
+  translation -12.8431 -3.631 0.3
+  rotation 1 0 0 1.5707963267948966
+  name "wooden box(11)"
+}
+WoodenBox {
+  translation -12.8431 0.429 0.3
+  rotation 1 0 0 1.5707963267948966
+  name "wooden box(12)"
+}
+WoodenBox {
+  translation -16.1531 0.429 0.3
+  rotation 1 0 0 1.5707963267948966
+  name "wooden box(13)"
+}
+WoodenBox {
+  translation -16.8231 -3.851 0.3
+  rotation 1 0 0 1.5707963267948966
+  name "wooden box(10)"
 }
 WoodenBox {
   translation -0.5072975 -11.706525 1.52
@@ -866,7 +929,7 @@ Solid {
             dampingConstant 5
           }
           endPoint Solid {
-            translation -4.3024534361088254e-10 -1.3322676295501878e-15 0
+            translation -4.3024534361130487e-10 -1.887379141862766e-15 0
             children [
               Solid {
                 translation -0.01 0 0
@@ -1062,7 +1125,7 @@ Solid {
             dampingConstant 5
           }
           endPoint Solid {
-            translation -2.262797761970879e-10 6.354361481442083e-13 0
+            translation -2.2627977619698132e-10 6.359635040809053e-13 0
             children [
               Solid {
                 translation -0.01 0 0
@@ -4597,7 +4660,7 @@ Solid {
             dampingConstant 5
           }
           endPoint Solid {
-            translation -1.9353201384519643e-09 4.776734563449736e-13 0
+            translation -1.935320138452213e-09 4.814759702043148e-13 0
             children [
               Solid {
                 translation -0.01 0 0
@@ -4793,7 +4856,7 @@ Solid {
             dampingConstant 5
           }
           endPoint Solid {
-            translation -1.0178298852101243e-09 2.1188606424971113e-13 0
+            translation -1.0178298852105464e-09 2.1210810885463616e-13 0
             children [
               Solid {
                 translation -0.01 0 0
@@ -12303,8 +12366,8 @@ DEF ROBOT Robot {
         }
       ]
       endPoint DEF RIGHT_WHEEL Solid {
-        translation -4.789644320120071e-05 -0.202000019834 -8.787234605524424e-05
-        rotation -0.7692792573747889 -0.4517786611993407 0.4517803287636863 4.453041291152221
+        translation -4.789644320120293e-05 -0.202000019834 -8.787234605524822e-05
+        rotation -0.7692792573747891 -0.45177866119934096 0.45178032876368585 4.453041291152222
         children [
           DEF BIG_WHEEL Group {
             children [
@@ -12422,8 +12485,8 @@ DEF ROBOT Robot {
         }
       ]
       endPoint DEF LEFT_WHEEL Solid {
-        translation 1.0740064382988316e-05 0.2020000508871321 8.630120050395626e-05
-        rotation -0.7974826647688386 -0.4266263374098233 0.4266279030038615 4.487997288069179
+        translation 1.0740064382988363e-05 0.2020000508871321 8.630120050395629e-05
+        rotation -0.7974826647688379 -0.42662633740982414 0.426627903003861 4.487997288069181
         children [
           Pose {
             rotation -1 0 0 3.141593
@@ -12570,7 +12633,7 @@ DEF ROBOT Robot {
       }
       endPoint Solid {
         translation -0.14 0 -0.075
-        rotation -0.028360989319450202 0.5782330056423665 0.8153785902699537 4.7533747348602935
+        rotation -0.02836098931945047 0.5782330056423668 0.8153785902699535 4.753374734860294
         children [
           DEF forma_esfera Shape {
             appearance PBRAppearance {
@@ -12595,7 +12658,7 @@ DEF ROBOT Robot {
       }
       endPoint Solid {
         translation 0.14 0 -0.075
-        rotation 0.45672760687928265 0.030348413564407112 0.8890887846039042 4.3570822891999805
+        rotation 0.4567276068792826 0.030348413564407286 0.889088784603904 4.357082289199981
         children [
           USE forma_esfera
         ]
@@ -12735,15 +12798,9 @@ DEF humanextra2 Pedestrian {
   enableBoundingObject TRUE
 }
 DEF humanextra3 Pedestrian {
-  translation -10.45 -1.37 1.37
+  translation -10.45 0.2 1.37
   name "pedestrian(9)"
   shirtColor 0.933333 0.933333 0.92549
-  enableBoundingObject TRUE
-}
-DEF humanextra4 Pedestrian {
-  translation -9.6 -6.85 1.37
-  name "pedestrian(6)"
-  shirtColor 0 0 0
   enableBoundingObject TRUE
 }
 DEF humanextra5 Pedestrian {
@@ -12751,6 +12808,7 @@ DEF humanextra5 Pedestrian {
   rotation 0 0 1 2.35619
   name "pedestrian(2)"
   shirtColor 0.937255 0.160784 0.160784
+  pantsColor 0.807843 0.360784 0
   enableBoundingObject TRUE
 }
 DEF humanextra6 Pedestrian {
@@ -12769,18 +12827,18 @@ DEF humanextra7 Pedestrian {
   enableBoundingObject TRUE
 }
 DEF humanextra8 Pedestrian {
-  translation -9.99876 -1.68416 1.37
+  translation -9.48963 0.12603 1.37
   rotation 0 0 1 2.35619
   name "pedestrian(7)"
-  shirtColor 0.937255 0.160784 0.160784
-  pantsColor 1 1 1
+  shirtColor 0.447059 0.623529 0.811765
+  pantsColor 0.756863 0.490196 0.0666667
   enableBoundingObject TRUE
 }
 DEF humanextra9 Pedestrian {
   translation -9.01606 -7.10762 1.37
   rotation 0 0 1 2.35619
   name "pedestrian(5)"
-  shirtColor 0.702525 0.0471046 0.88333
+  shirtColor 0.533333 0.541176 0.521569
   pantsColor 0.827451 0.843137 0.811765
   enableBoundingObject TRUE
 }
@@ -12800,12 +12858,12 @@ DEF humanextra11 Pedestrian {
   pantsColor 0.929412 0.831373 0
   enableBoundingObject TRUE
 }
-DEF humanextra12 Pedestrian {
-  translation -9.85068 -1.08005 1.37
+DEF humanextra11 Pedestrian {
+  translation -9.91238 0.560504 1.27
   rotation 0 0 1 -2.094395307179586
-  name "pedestrian(8)"
-  shirtColor 0.239216 0.25098 0.501961
-  pantsColor 0.952941 0.952941 0.952941
+  name "pedestrian(14)"
+  shirtColor 0.333333 0.341176 0.32549
+  pantsColor 0.929412 0.831373 0
   enableBoundingObject TRUE
 }
 DEF humanextra13 Pedestrian {
@@ -12817,11 +12875,15 @@ DEF humanextra13 Pedestrian {
   enableBoundingObject TRUE
 }
 DEF target_human Pedestrian {
-  translation -3.34 -1.93 1.27
-  enableBoundingObject TRUE
+  translation -4.5 -0.16 1.27
+  rotation 0 0 1 3.14159
+  controllerArgs [
+    "--trajectory= -4.5 0,-4 -3.5,-6 -2.5,-10 -2.5,-15 -2.5,-18 -10.0,-10 -10"
+    "--speed=1.1"
+  ]
 }
 DEF target Solid {
-  translation -1.23 -2.85 0.06
+  translation 1.91 -2.85 0.06
   children [
     Shape {
       appearance PBRAppearance {
