@@ -74,6 +74,12 @@ Usted deberá observar lo siguiente:
 
 https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/81a87ee9-ecbb-4fc5-8ad8-b225c92033a7
 
+5. Finalmente se añadio una actualización con mas obstaculos y personas, puede observarlo aqui:
+
+
+
+https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/795d65b9-0cf4-4fb7-b897-5b4869b53540
+
 
 
 # Resultados de Entrenamiento
