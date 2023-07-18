@@ -25,7 +25,7 @@ def run(train_parse,yolo_parse):
     	os.makedirs("./models/saved/default_ddpg/", exist_ok=True)
     episode_count = 0
     solved = False  # Whether the solved requirement is met
-
+    actor_loss,critic_loss,AVG_mean = [],[],[]
 
     #'''
     # Run outer loop until the episodes limit is reached or the task is solved
@@ -33,7 +33,7 @@ def run(train_parse,yolo_parse):
         while not solved and episode_count < EPISODE_LIMIT:
             state = env.reset()  # Reset robot and get starting observation
             env.episode_score = 0
-    
+            actor_loss_step,critic_loss_step = None, None
             # Inner loop is the episode loop
             for step in range(STEPS_PER_EPISODE):
                 # In training mode the agent returns the action plus OU noise for exploration
@@ -48,6 +48,7 @@ def run(train_parse,yolo_parse):
     
                 env.episode_score += reward  # Accumulate episode reward
                 # Perform a learning step
+                #actor_loss_step,critic_loss_step = agent.learn()
                 agent.learn()
                 if done or step == STEPS_PER_EPISODE - 1:
                     # Save the episode's score
@@ -56,7 +57,10 @@ def run(train_parse,yolo_parse):
                     break
     
                 state = new_state  # state for next step is current step's new_state
-    
+            # Get actor and critic loss of the last step in the previous episode:
+            actor_loss.append(agent.actor_loss_register)
+            critic_loss.append(agent.critic_loss_register)
+            AVG_mean.append(mean(env.episode_score_list[-100:]))
             print("Episode #", episode_count, "score:", env.episode_score, "AVG:", mean(env.episode_score_list[-100:]))
             episode_count += 1  # Increment episode counter
             if episode_count % 400 == 0:
@@ -64,9 +68,9 @@ def run(train_parse,yolo_parse):
         # np.convolve is used as a moving average, see https://stackoverflow.com/a/22621523
         # this is done to smooth out the plots
         
-        moving_avg_n = 100
-        plot_data(convolve(env.episode_score_list, ones((moving_avg_n,)) / moving_avg_n, mode='valid'),
-                 "episode", "episode score", "Episode scores over episodes")
+        plot_data(AVG_mean,"episode", "episode rewards Mean", "Episode scores over 100 episodes",save=True, save_name='Rewards',color='blue')
+        plot_data(actor_loss, "episode", "Actor loss", "Actor loss per episode",save=True, save_name='Actor Loss',color='green')
+        plot_data(critic_loss,"episode", "Critic loss", "Critic loss per episode",save=True, save_name='Critic loss',color='red')
         agent.save_models()
         if not solved:
             print("Reached episode limit and task was not solved, deploying agent for testing...")

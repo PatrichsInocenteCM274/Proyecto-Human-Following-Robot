@@ -215,7 +215,8 @@ class DDPGAgent(object):
         self.batch_size = batch_size
         self.memory = ReplayBuffer(max_size, input_shape, output_shape)
         self.output_shape = output_shape
-
+        self.actor_loss_register = None
+        self.critic_loss_register = None
         self.actor = ActorNetwork(input_shape, output_shape, lr_actor, layer1_size, layer2_size, layer3_size,
                                   name="Actor")
 
@@ -305,6 +306,9 @@ class DDPGAgent(object):
         self.actor.optimizer.step()
 
         self.update_network_parameters()
+        self.actor_loss_register = actor_loss.item()
+        self.critic_loss_register = critic_loss.item()
+        
 
     def work(self):
         self.target_actor.eval()

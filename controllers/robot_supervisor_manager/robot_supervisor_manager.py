@@ -14,24 +14,4 @@ if __name__ == '__main__':
     options, args = opt_parser.parse_args()
     DDPG_runner.run(options.train,options.yolo)
 
-# from robot_supervisor import CartPoleRobotSupervisor
-# from stable_baselines3.ppo import PPO
-# from stable_baselines3.common.monitor import Monitor
-# from stable_baselines3.common.callbacks import CheckpointCallback
-#
-#
-# env = Monitor(CartPoleRobotSupervisor(), filename="")
-# checkpoint_callback = CheckpointCallback(
-#     save_freq=int(1e4),
-#     save_path='./checkpoints/',
-#     name_prefix='rl_model'
-# )
-#
-# # Train
-# model = PPO(
-#     'MlpPolicy',
-#     env,
-#     tensorboard_log='./tb_logs/',
-#     verbose=1
-# )
-# model.learn(total_timesteps=int(1e6), callback=checkpoint_callback)
+

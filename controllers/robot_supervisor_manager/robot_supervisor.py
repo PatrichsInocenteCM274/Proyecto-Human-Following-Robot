@@ -38,11 +38,15 @@ class HumanFollowingRobotSupervisor(RobotSupervisorEnv):
         # Set up various robot components
         self.robot = self.getSelf()  # Grab the robot reference from the supervisor to access various robot methods
         #self.target = self.getFromDef('target_train')
-        self.target = self.getFromDef('target_human')
+        self.train = in_train
+        if self.train:
+            self.target = self.getFromDef('target_cilinder')
+        else:
+            self.target = self.getFromDef('target_human')
         self.np_random, _ = gym.utils.seeding.np_random()
         self.np_random.seed(100)
         self.YOLO = with_yolo
-        self.train = in_train
+        
         #camera
         self.camera = self.getDevice("camera")
         self.camera.enable(self.timestep)

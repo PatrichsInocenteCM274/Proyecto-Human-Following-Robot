@@ -33,7 +33,7 @@ def normalize_to_range(value, min_val, max_val, new_min, new_max, clip=False):
         return (new_max - new_min) / (max_val - min_val) * (value - max_val) + new_max
 
 
-def plot_data(data, x_label, y_label, plot_title, save=False, save_name=None):
+def plot_data(data, x_label, y_label, plot_title, save=False, save_name=None, color='blue'):
     """
     Uses matplotlib to plot data.
 
@@ -51,7 +51,7 @@ def plot_data(data, x_label, y_label, plot_title, save=False, save_name=None):
     :type save_name: str, optional
     """
     fig, ax = plt.subplots()
-    ax.plot(data)
+    ax.plot(data, color=color)
     ax.set(xlabel=x_label, ylabel=y_label,
            title=plot_title)
     ax.grid()
