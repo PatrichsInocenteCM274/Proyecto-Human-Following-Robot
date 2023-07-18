@@ -44,7 +44,38 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en Webots (S
   </tr>
  </table>
 
-## Instrucciones de Uso (Probado en Ubuntu 20.04):
+# Entrenamiento
+
+En este punto se entrenó al robot mediante aprendizaje por Refuerzo Profundo usando
+DDPG con la finalidad de encontrar una correcta actuación de las ruedas para moverse
+a lo largo del escenario. Sin embargo, para el entrenamiento del robot se ha optó por
+colocar un cilindro achatado verde como meta de llegada, el cual por su altura es
+indetectable por el LIDAR, con ello el robot no tomó a la meta como un obstáculo
+y permitió un entrenamiento más fluido. Luego de 4000 episodios de entrenamiento
+DDPG muestra un correcto control del robot para alzanzar la meta (cilindro verde) y
+evasión de obstáculos puestos en el camino, puede ver esta demostración a continuación:
+
+https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/c2742a76-96fa-45dc-b36e-b9edf94f36d5
+
+<div id="features"></div>
+<table>
+  <tr>
+    <td><h2> Resultados DDPG </h2> </td>
+  </tr>
+  <tr>
+    <td><img src="data_images/result_ddpg_4000_episodes.png" >
+      </td>
+  </tr>
+ </table>
+
+# Resultados
+
+Luego del entrenamiento, se abandono el cilindro verde como meta, y se coloco a la persona en su lugar, tal como se muestra a continuación:
+
+
+https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/795d65b9-0cf4-4fb7-b897-5b4869b53540
+
+## Instrucciones de Uso (Probado en Ubuntu 20.04 y GPU Nvidia):
 ### 1. Instalación 
 Instale las siguientes librerias ingresando los siguientes comandos en su Terminal.
 ~~~
@@ -68,32 +99,12 @@ Usted deberá observar lo siguiente:
 ![Captura de pantalla de 2023-07-05 21-02-23](https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/a8f5edcd-5523-4424-ba16-08625815b4e7)
 
 
-4. Usted se encuentra en el camino correcto, si la simulaciòn no se ejecuta automàticamente solo debe seleccionar el boton ▶️ que iniciará la simulación. A continuaciòn el robot empezará a detectar a la persona objetivo y la seguirá, cabe notar que la velocidad en simulación es lenta debido al pequeño delay de detección del modelo Yolo, por lo que no se preocupe si la simulación se ejecuta con bajos fps, puede grabar la simulación usando la herramienta de grabación de webots y obtener un resultado como el siguiente:
+4. Usted se encuentra en el camino correcto, si la simulaciòn no se ejecuta automàticamente solo debe seleccionar el boton ▶️ que iniciará la simulación. A continuaciòn el robot empezará a detectar a la persona objetivo y la seguirá, cabe notar que la velocidad en simulación es lenta debido al pequeño delay de detección del modelo Yolo, por lo que no se preocupe si la simulación se ejecuta con bajos fps, puede grabar la simulación usando la herramienta de grabación de webots.
 
 
 
-https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/81a87ee9-ecbb-4fc5-8ad8-b225c92033a7
-
-5. Finalmente se añadio una actualización con mas obstaculos y personas, puede observarlo aqui:
 
 
-
-https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/795d65b9-0cf4-4fb7-b897-5b4869b53540
-
-
-
-# Resultados de Entrenamiento
-
-<div id="features"></div>
-<table>
-  <tr>
-    <td><h2> Resultados DDPG </h2> </td>
-  </tr>
-  <tr>
-    <td><img src="data_images/result_ddpg_4000_episodes.png" >
-      </td>
-  </tr>
- </table>
 
 
 
