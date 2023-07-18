@@ -75,7 +75,8 @@ Luego del entrenamiento, se abandono el cilindro verde como meta, y se coloco a 
 
 https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/795d65b9-0cf4-4fb7-b897-5b4869b53540
 
-## Instrucciones de Uso (Probado en Ubuntu 20.04 y GPU Nvidia):
+## Instrucciones de Uso (Probado en Ubuntu 20.04 con GPU Nvidia):
+
 ### 1. Instalación 
 Instale las siguientes librerias ingresando los siguientes comandos en su Terminal.
 ~~~
