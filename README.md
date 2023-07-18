@@ -68,7 +68,7 @@ https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/3
   </tr>
  </table>
 
-# Resultados
+# Poniendo a prueba
 
 Luego del entrenamiento, se abandono el cilindro verde como meta, y se coloco a la persona en su lugar, tal como se muestra a continuación:
 
