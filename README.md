@@ -73,7 +73,12 @@ https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/3
 Luego del entrenamiento, se abandono el cilindro verde como meta y se coloco a la persona en su lugar, además la dirección de la cámara se mueve mediante la detección del modelo TinyYolov3 tal como se muestra a continuación:
 
 
-[https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/795d65b9-0cf4-4fb7-b897-5b4869b53540](https://www.youtube.com/watch?v=1CB4J9nSYHQ)
+
+https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/a0598a66-e439-407c-8f80-a37cf3f134f0
+
+
+
+puede encontrar la demostración completa aqui: https://www.youtube.com/watch?v=1CB4J9nSYHQ
 
 ## Instrucciones de Uso (Probado en Ubuntu 20.04 con GPU Nvidia):
 
