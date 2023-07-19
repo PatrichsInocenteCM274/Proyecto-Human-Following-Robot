@@ -74,7 +74,11 @@ Luego del entrenamiento, se abandono el cilindro verde como meta y se coloco a l
 
 
 
-https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/a0598a66-e439-407c-8f80-a37cf3f134f0
+
+
+https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/f6ec3aac-ad90-47bf-8ebb-3b8e8080e3d0
+
+
 
 
 
