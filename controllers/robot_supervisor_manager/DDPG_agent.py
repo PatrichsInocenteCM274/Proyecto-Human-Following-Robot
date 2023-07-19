@@ -1,3 +1,8 @@
+# This code has been taken from deepbots, 
+# you can find the original here:
+# https://github.com/aidudezzz/deepworlds/blob/dev/examples/cartpole/cartpole_continuous/controllers/robot_supervisor_manager/agent/DDPG_agent.py
+
+
 import os
 import numpy as np
 import torch as T

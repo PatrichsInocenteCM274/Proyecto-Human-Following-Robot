@@ -1,3 +1,8 @@
+# This code has been modified from the deepbots source code, you can 
+# find the original here: 
+# https://github.com/aidudezzz/deepworlds/blob/dev/examples/cartpole/cartpole_continuous/controllers/robot_supervisor_manager/DDPG_runner.py
+
+
 from numpy import convolve, ones, mean
 from robot_supervisor import HumanFollowingRobotSupervisor
 from DDPG_agent import DDPGAgent

@@ -20,8 +20,8 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.33149783305501085 0.007106117371962097 -0.9434292182118 3.101142200285283
-  position 9.989391081580656 0.6833947777314242 9.040480681473165
+  orientation 0.3362060280436224 0.008889062323436317 -0.9417465111579341 3.0917962357471533
+  position 9.9149323392979 0.7861578723360765 9.15512323755918
   follow "robot"
   followType "Mounted Shot"
 }
@@ -929,7 +929,7 @@ Solid {
             dampingConstant 5
           }
           endPoint Solid {
-            translation -4.302453436115159e-10 -2.220446049250313e-15 0
+            translation -4.302453436115154e-10 -2.4424906541753444e-15 0
             children [
               Solid {
                 translation -0.01 0 0
@@ -1125,7 +1125,7 @@ Solid {
             dampingConstant 5
           }
           endPoint Solid {
-            translation -2.262797765079242e-10 9.7069574600539e-13 0
+            translation -2.262797765091926e-10 9.723055693910965e-13 0
             children [
               Solid {
                 translation -0.01 0 0
@@ -4660,7 +4660,7 @@ Solid {
             dampingConstant 5
           }
           endPoint Solid {
-            translation -1.935320138791927e-09 7.047418204564337e-13 0
+            translation -1.9353201387934364e-09 7.075728891692279e-13 0
             children [
               Solid {
                 translation -0.01 0 0
@@ -4856,7 +4856,7 @@ Solid {
             dampingConstant 5
           }
           endPoint Solid {
-            translation -1.0178298853571528e-09 3.2371327840508e-13 0
+            translation -1.0178298853581024e-09 3.242683899173926e-13 0
             children [
               Solid {
                 translation -0.01 0 0
@@ -12366,8 +12366,8 @@ DEF ROBOT Robot {
         }
       ]
       endPoint DEF RIGHT_WHEEL Solid {
-        translation -4.7896443201265e-05 -0.202000019834 -8.78723460553629e-05
-        rotation -0.7692792573747927 -0.45177866119933247 0.45178032876368834 4.453041291152317
+        translation -4.7896443201266475e-05 -0.202000019834 -8.787234605536534e-05
+        rotation -0.7692792573747927 -0.4517786611993325 0.45178032876368784 4.453041291152318
         children [
           DEF BIG_WHEEL Group {
             children [
@@ -12485,8 +12485,8 @@ DEF ROBOT Robot {
         }
       ]
       endPoint DEF LEFT_WHEEL Solid {
-        translation 1.0740064382986744e-05 0.2020000508871321 8.630120050395117e-05
-        rotation -0.7974826647688429 -0.4266263374098242 0.42662790300385234 4.487997288069219
+        translation 1.0740064382986744e-05 0.2020000508871321 8.630120050395122e-05
+        rotation -0.7974826647688429 -0.4266263374098244 0.42662790300385206 4.48799728806922
         children [
           Pose {
             rotation -1 0 0 3.141593
@@ -12633,7 +12633,7 @@ DEF ROBOT Robot {
       }
       endPoint Solid {
         translation -0.14 0 -0.075
-        rotation -0.028360989319449432 0.578233005642389 0.8153785902699378 4.753374734860325
+        rotation -0.02836098931945032 0.5782330056423892 0.8153785902699376 4.753374734860325
         children [
           DEF forma_esfera Shape {
             appearance PBRAppearance {
@@ -12658,7 +12658,7 @@ DEF ROBOT Robot {
       }
       endPoint Solid {
         translation 0.14 0 -0.075
-        rotation 0.45672760687929465 0.03034841356441995 0.8890887846038973 4.357082289200026
+        rotation 0.4567276068792949 0.030348413564420303 0.8890887846038973 4.357082289200026
         children [
           USE forma_esfera
         ]
@@ -12780,7 +12780,7 @@ DEF ROBOT Robot {
   controller "robot_supervisor_manager"
   controllerArgs [
     "--train=not"
-    "--yolo=not"
+    "--yolo=yes"
   ]
   supervisor TRUE
 }

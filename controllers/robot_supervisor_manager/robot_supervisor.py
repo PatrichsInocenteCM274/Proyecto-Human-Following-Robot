@@ -1,3 +1,10 @@
+# The coding of this code is own and uses deepbots, imageai, gym.
+# some functions have been taken from webots sources. 
+# The code structure has been implemented according to the guidelines 
+# posted by deepbots.
+# You can find his amazing guide on the page
+# https://github.com/aidudezzz/deepbots-tutorials/tree/master/robotSupervisorSchemeTutorial
+
 from deepbots.supervisor import RobotSupervisorEnv
 from utilities import normalize_to_range
 import cv2
@@ -48,6 +55,7 @@ class HumanFollowingRobotSupervisor(RobotSupervisorEnv):
         self.YOLO = with_yolo
         
         #camera
+        self.angle_camera = 0.0
         self.camera = self.getDevice("camera")
         self.camera.enable(self.timestep)
         self.position_sensor_camera = self.getDevice("camera_angle_sensor")
@@ -61,6 +69,7 @@ class HumanFollowingRobotSupervisor(RobotSupervisorEnv):
         self.dist_to_goal_reached = 0.65
         self.dist_to_obstacle_reached = 0.30
         self.box_detect = None
+        self.box_yolo_detect_middle_point = self.width/2
         self.steps = 0
         if self.YOLO:
             print("Usando YOLO para detección de persona Objetivo")
@@ -102,6 +111,7 @@ class HumanFollowingRobotSupervisor(RobotSupervisorEnv):
         
         if self.box_detect:
             x1,y1,x2,y2 = self.box_detect
+            self.box_yolo_detect_middle_point = (x1 + x2)/2.0
             self.display.fillRectangle(x1, y1, x2 - x1, y2 - y1)
             self.box_detect = None
               
@@ -141,7 +151,7 @@ class HumanFollowingRobotSupervisor(RobotSupervisorEnv):
         
     def get_observations(self):
         
-        if self.YOLO and self.steps%4 == 0:
+        if self.YOLO and self.steps%1 == 0:
             self.yolo_detection()
         
         #self.saving_images()
@@ -240,46 +250,63 @@ class HumanFollowingRobotSupervisor(RobotSupervisorEnv):
         self.setup_obstacles()
         return np.concatenate([np.array([0.0,0.0,1.0,0.0,0.0]),np.array([1.0]*self.lidar_resolution)])
         
-    def change_direction_camera(self):
-        # angle_robot -> [0,6.2830]
-        angle_robot = 3.1415 + math.atan2(self.robot.getOrientation()[1],self.robot.getOrientation()[0])
-        # angle_persona -> [0,6.2830]
-        angle_persona = 3.1415 - math.atan2(-self.robot.getPosition()[1] + self.target.getPosition()[1],
-                            -self.robot.getPosition()[0] + self.target.getPosition()[0]) 
-
-        angle_camera = angle_persona - angle_robot 
-        angle_camera = angle_camera if angle_camera>0 else 6.2830+angle_camera  
         
+    def change_direction_camera_using_yolo(self):
         
-        #print(self.sensor_camera_value())
-        
-        if self.sensor_camera_value() < angle_camera:
-            if abs(self.sensor_camera_value() - angle_camera)<3.1415:
-                if abs(self.sensor_camera_value()-angle_camera) < 0.01 :
-                    self.motor_camera.setPosition(float('inf'))
-                    self.motor_camera.setVelocity(0.0)
-                else:
-                    self.motor_camera.setPosition(float('inf'))
-                    self.motor_camera.setVelocity(-1.5)
-                #print("1")
-            else:
-                self.motor_camera.setPosition(float('inf'))
-                self.motor_camera.setVelocity(1.5)
-                #print("2")
-                
-        if self.sensor_camera_value() > angle_camera:
-            if abs(self.sensor_camera_value() - angle_camera)<3.1415:
-                if abs(self.sensor_camera_value()-angle_camera) < 0.01 :
+        if self.box_yolo_detect_middle_point < self.width/2.0:
+                if abs(self.box_yolo_detect_middle_point - self.width/2.0) < 0.01 :
                     self.motor_camera.setPosition(float('inf'))
                     self.motor_camera.setVelocity(0.0)
                 else:
                     self.motor_camera.setPosition(float('inf'))
                     self.motor_camera.setVelocity(1.5)
-                #print("3")
+                
+        if self.box_yolo_detect_middle_point > self.width/2.0:
+                if abs(self.box_yolo_detect_middle_point - self.width/2.0) < 0.01 :
+                    self.motor_camera.setPosition(float('inf'))
+                    self.motor_camera.setVelocity(0.0)
+                else:
+                    self.motor_camera.setPosition(float('inf'))
+                    self.motor_camera.setVelocity(-1.5)
+        
+    def change_direction_camera(self):
+    
+        # angle_robot -> [0,6.2830]
+        angle_robot = 3.1415 + math.atan2(self.robot.getOrientation()[1],self.robot.getOrientation()[0])
+        # angle_persona -> [0,6.2830]
+        angle_target = 3.1415 - math.atan2(-self.robot.getPosition()[1] + self.target.getPosition()[1],
+                            -self.robot.getPosition()[0] + self.target.getPosition()[0]) 
+    
+        self.angle_camera = angle_target - angle_robot 
+        self.angle_camera = self.angle_camera if self.angle_camera>0 else 6.2830+self.angle_camera         
+        
+        if self.sensor_camera_value() < self.angle_camera:
+            if abs(self.sensor_camera_value() - self.angle_camera)<3.1415:
+                if abs(self.sensor_camera_value()-self.angle_camera) < 0.01 :
+                    self.motor_camera.setPosition(float('inf'))
+                    self.motor_camera.setVelocity(0.0)
+                else:
+                    self.motor_camera.setPosition(float('inf'))
+                    self.motor_camera.setVelocity(-1.5)
+                
+            else:
+                self.motor_camera.setPosition(float('inf'))
+                self.motor_camera.setVelocity(1.5)
+                
+                
+        if self.sensor_camera_value() > self.angle_camera:
+            if abs(self.sensor_camera_value() - self.angle_camera)<3.1415:
+                if abs(self.sensor_camera_value() - self.angle_camera) < 0.01 :
+                    self.motor_camera.setPosition(float('inf'))
+                    self.motor_camera.setVelocity(0.0)
+                else:
+                    self.motor_camera.setPosition(float('inf'))
+                    self.motor_camera.setVelocity(1.5)
+                
             else:
                 self.motor_camera.setPosition(float('inf'))
                 self.motor_camera.setVelocity(-1.5)
-                #print("4")
+                
             
     def sensor_camera_value(self):
         if self.position_sensor_camera.getValue()<0:
@@ -290,23 +317,30 @@ class HumanFollowingRobotSupervisor(RobotSupervisorEnv):
 
     def apply_action(self, action):
 
-        speed_right = float(action[0]) * 4.0  # 
+        speed_right = float(action[0]) * 4.0  
         speed_left = float(action[1]) * 4.0
-        #print(action[0],action[1])
+
  
         self.wheels[0].setPosition(float('inf'))
         self.wheels[0].setVelocity(speed_right)
         self.wheels[1].setPosition(float('inf'))
         self.wheels[1].setVelocity(speed_left)
-        #self.motor_camera.setPosition(float('inf'))
-        self.change_direction_camera()
+
+        if self.YOLO and not self.train:
+            # if YOLO is true or not train,the camera changes direction
+            # by yolo detection box
+            self.change_direction_camera_using_yolo()
+            
+        else:
+            # the camera changes direction 
+            # by computing the angle from the internal position data
+            # of the target and robot.
+            self.change_direction_camera()
         
-        #print(self.position_sensor_camera.getValue())
 
     def setup_motors(self):
         """
-        This method initializes the four wheels, storing the references inside a list and setting the starting
-        positions and velocities.
+        This method initializes the two wheels and the camera motor
         """
         self.wheels[0] = self.getDevice('wheel_right_joint')
         self.wheels[1] = self.getDevice('wheel_left_joint')
