@@ -70,7 +70,7 @@ https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/3
 
 # Poniendo a prueba
 
-Luego del entrenamiento, se abandono el cilindro verde como meta y se coloco a la persona en su lugar, además la dirección de la cámara se mueve mediante la detección del modelo TinyYolov3 tal como se muestra a continuación:
+Luego del entrenamiento, se abandono el cilindro verde como meta y se coloco a la persona objetivo en su lugar, además la dirección de la cámara se mueve mediante la detección del modelo TinyYolov3 tal como se muestra a continuación:
 
 
 
