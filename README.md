@@ -48,7 +48,7 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en Webots (S
 
 En este punto se entrenó al robot mediante aprendizaje por Refuerzo Profundo usando
 DDPG con la finalidad de encontrar una correcta actuación de las ruedas para moverse
-a lo largo del escenario. Sin embargo, para el entrenamiento del robot se ha optó por
+a lo largo del escenario. Sin embargo, para el entrenamiento del robot se optó por
 colocar un cilindro achatado verde como meta de llegada, el cual por su altura es
 indetectable por el LIDAR, con ello el robot no tomó a la meta como un obstáculo
 y permitió un entrenamiento más fluido. Luego de 4000 episodios de entrenamiento
