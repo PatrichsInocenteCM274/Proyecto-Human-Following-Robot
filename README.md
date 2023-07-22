@@ -57,6 +57,8 @@ evasión de obstáculos puestos en el camino, puede ver esta demostración a con
 
 https://github.com/PatrichsInocenteCM274/Proyecto-Human-Following-Robot/assets/30361234/c2742a76-96fa-45dc-b36e-b9edf94f36d5
 
+puede encontrar la demostración completa aqui: https://www.youtube.com/watch?v=5H-uahe66YI
+
 <div id="features"></div>
 <table>
   <tr>
