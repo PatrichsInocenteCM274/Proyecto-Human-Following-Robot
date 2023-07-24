@@ -44,6 +44,60 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en Webots (S
   </tr>
  </table>
 
+Referencias a las tecnologias y codificaciones usadas en este proyecto:
+
+#### Las Maravillosas Librerías de Deepbots y Deepworlds:
+https://github.com/aidudezzz/deepbots/tree/dev
+
+https://github.com/aidudezzz/deepworlds
+
+cuya referencia oficial es:
+
+```bibtex
+@InProceedings{10.1007/978-3-030-49186-4_6,
+    author="Kirtas, M.
+    and Tsampazis, K.
+    and Passalis, N.
+    and Tefas, A.",
+    title="Deepbots: A Webots-Based Deep Reinforcement Learning Framework for Robotics",
+    booktitle="Artificial Intelligence Applications and Innovations",
+    year="2020",
+    publisher="Springer International Publishing",
+    address="Cham",
+    pages="64--75",
+    isbn="978-3-030-49186-4"
+}
+```
+
+#### La Maravillosa Librería de Imageai:
+https://github.com/OlafenwaMoses/ImageAI/tree/master
+cuya referencia oficial es:
+```bibtex
+@misc {ImageAI,
+    author = "Moses",
+    title  = "ImageAI, an open source python library built to empower developers to build applications and systems  with self-contained Computer Vision capabilities",
+    url    = "https://github.com/OlafenwaMoses/ImageAI",
+    month  = "mar",
+    year   = "2018--"
+}
+```
+#### El maravilloso mundo de Webots, el simulador usado en nuestro proyecto:
+
+https://cyberbotics.com/
+
+cuya referencia oficial es:
+
+```bibtex
+@MISC{Webots,
+  AUTHOR = {Webots},
+  TITLE  = {http://www.cyberbotics.com},
+  NOTE   = {Open-source Mobile Robot Simulation Software},
+  EDITOR = {Cyberbotics Ltd.},
+  URL    = {http://www.cyberbotics.com}
+}
+```
+
+
 # Entrenamiento
 
 En este punto se entrenó al robot mediante aprendizaje por Refuerzo Profundo usando
