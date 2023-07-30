@@ -142,6 +142,8 @@ puede encontrar la demostración completa aqui: https://www.youtube.com/watch?v=
 
 ## Instrucciones de Uso (Probado en Ubuntu 20.04 con GPU Nvidia):
 
+Antes de seguir las instrucciones, asegurese de contar con una GPU y CUDA instalados en su maquina, sin ello se obtendrá un error debido a que DDPG ha sido entrenado mediante GPU y webots no podrá cargar por tanto el modelo.
+
 ### 1. Instalación 
 Instale las siguientes librerias ingresando los siguientes comandos en su Terminal.
 ~~~
