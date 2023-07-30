@@ -81,7 +81,7 @@ cuya referencia oficial es:
     year   = "2018--"
 }
 ```
-#### El maravilloso mundo de Webots, el simulador usado en nuestro proyecto:
+#### El maravilloso mundo de Webots, el simulador usado en este proyecto:
 
 https://cyberbotics.com/
 
