@@ -47,8 +47,9 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en Webots (S
 Referencias a las tecnologias y codificaciones usadas en este proyecto:
 
 #### Las Maravillosas Librerías de Deepbots y Deepworlds:
+1. De Deepbots extraje la forma de construir un entorno de Webots que se adaptable a OpenAiGym, el cual es la norma en aprendizaje por Refuerzo.
 https://github.com/aidudezzz/deepbots/tree/dev
-
+2. De Deepworlds obtuve el modelo DDPG usado en este proyecto.
 https://github.com/aidudezzz/deepworlds
 
 cuya referencia oficial es:
