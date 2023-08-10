@@ -21,18 +21,7 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en *Webots* 
   </tr>
  </table>
 
- <div id="robot"></div>
-<table>
-  <tr>
-    <td><h2> El Robot </h2> </td>
-  </tr>
-  <tr>
-    <td><img src="data_images/robot.png" >
-    Desde el inicio, pensé en una configuración diferencial para mi robot, por la simplicidad de su locomoción, ya que solo depende de dos actuadores o motores por lo que ayuda a reducir la complejidad de acciones al momento de la busqueda de la política optima al entrenar el modelo DDPG, principalmente en Webots existen algunas opciones útiles de robots conocidos, uno de los robots que más llamo mi atención fue el robot Thiago Base de la empresa Pal Robotics que posee una configuración diferencial por ello partiendo de su modelo, elimine, modifique y añadi partes adicionales para terminar implementando mi robot personalizado, por ejemplo, mejores ruedas locas base, un torso con un sensor lidar centrado y una base giratoria como cabeza del robot, la cual ayuda a mover la cámara desde un angulo entre 0 a 360 grados. </td>
-  </tr>
- </table>
-
-  <div id="escenario"></div>
+   <div id="escenario"></div>
 <table>
   <tr>
     <td><h2> El Escenario </h2> </td>
@@ -46,6 +35,19 @@ cajas, etc. de manera que se implementó un entorno personalizado con la mayor
 cantidad de obstaculos posibles tal como se muestra en la figura. </td>
   </tr>
  </table>
+
+ <div id="robot"></div>
+<table>
+  <tr>
+    <td><h2> El Robot </h2> </td>
+  </tr>
+  <tr>
+    <td><img src="data_images/robot.png" >
+    Desde el inicio, pensé en una configuración diferencial para mi robot, por la simplicidad de su locomoción, ya que solo depende de dos actuadores o motores por lo que ayuda a reducir la complejidad de acciones al momento de la busqueda de la política optima al entrenar el modelo DDPG, principalmente en Webots existen algunas opciones útiles de robots conocidos, uno de los robots que más llamo mi atención fue el robot Thiago Base de la empresa Pal Robotics que posee una configuración diferencial por ello partiendo de su modelo, elimine, modifique y añadi partes adicionales para terminar implementando mi robot personalizado, por ejemplo, mejores ruedas locas base, un torso con un sensor lidar centrado y una base giratoria como cabeza del robot, la cual ayuda a mover la cámara desde un angulo entre 0 a 360 grados. </td>
+  </tr>
+ </table>
+
+
 
 # Herramientas
 <div id="features"></div>
