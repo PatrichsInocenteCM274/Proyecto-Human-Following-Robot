@@ -32,6 +32,21 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en *Webots* 
   </tr>
  </table>
 
+  <div id="escenario"></div>
+<table>
+  <tr>
+    <td><h2> El Escenario </h2> </td>
+  </tr>
+  <tr>
+    <td><img src="data_images/Escenario.png" >
+    Webots contiene algunos escenarios por defecto, cada uno de ellos está compactado
+como un conjunto de elementos visuales agrupados en un archivo .wbt, se decidió
+partir del mundo factory.wbt, el cual se modificó agregando modelos pedestrian, barriles
+cajas, etc. de manera que se implementó un entorno personalizado con la mayor
+cantidad de obstaculos posibles tal como se muestra en la figura. </td>
+  </tr>
+ </table>
+
 # Herramientas
 <div id="features"></div>
 <table>
