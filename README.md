@@ -17,7 +17,7 @@ Este proyecto tuvo como objetivo implementar un entorno de Gimnasio en **Webots*
   </tr>
   <tr>
     <td><img src="data_images/entorno.png" >
-    En este proyecto se modelo un Entorno parcialmente observable por el agente robótico móvil, donde en cada instante de tiempo, el agente registrará los datos de observación de 64 mediciones de puntos del LIDAR, los datos de los sensores de orientación, rotación y velocidad (puede prescindir de los datos de velocidad y orientacion X e Y, el resultado será el mismo, sin embargo debe encontrar otra forma de obtener la distancia entre el robot y el objetivo sin estos datos para la correcta obtención de la recompensa), es importante mencionar que la orientacion de cámara actual es enviada también como observación. La orientación de la cámara dependerá de la dirección en la que la persona objetivo es detectada por el modelo YOLO. </td>
+    En este proyecto se modelo un Entorno parcialmente observable por el agente robótico móvil, donde en cada instante de tiempo, el agente registrará los datos de observación de 64 mediciones de puntos del LIDAR, los datos de los sensores de orientación, rotación y velocidad (puede prescindir de los datos de velocidad y orientacion X e Y, el resultado será el mismo, sin embargo sin estos datos debe encontrar otra forma de obtener la distancia entre el robot y el objetivo para una correcta obtención de recompensa), es importante mencionar que la orientacion de cámara actual es enviada también como observación. La orientación de la cámara dependerá de la dirección en la que la persona objetivo es detectada por el modelo YOLO. </td>
   </tr>
  </table>
 
